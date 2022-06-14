@@ -8,8 +8,6 @@ import AuthContext from "./context/store/auth-context";
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-
     useEffect(() => {
             const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
 
