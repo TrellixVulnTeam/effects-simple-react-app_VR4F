@@ -11,12 +11,12 @@ function App() {
     useEffect(() => {
             const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
 
-            if (storedUserLoggedInInformation === '1'){
+            if (storedUserLoggedInInformation === '1') {
                 setIsLoggedIn(true);
             }
         },
         []
-        );
+    );
 
     const loginHandler = (email, password) => {
         // We should of course check email and password
@@ -31,13 +31,16 @@ function App() {
     };
 
     return (
-            <AuthContext.Provider value={{isLoggedIn: isLoggedIn}}>
-                <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}/>
-                <main>
-                    {!isLoggedIn && <Login onLogin={loginHandler}/>}
-                    {isLoggedIn && <Home onLogout={logoutHandler}/>}
-                </main>
-            </AuthContext.Provider>
+        <AuthContext.Provider value={{
+            isLoggedIn: isLoggedIn,
+            onLogout: logoutHandler
+        }}>
+            <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}/>
+            <main>
+                {!isLoggedIn && <Login onLogin={loginHandler}/>}
+                {isLoggedIn && <Home onLogout={logoutHandler}/>}
+            </main>
+        </AuthContext.Provider>
     );
 }
 
